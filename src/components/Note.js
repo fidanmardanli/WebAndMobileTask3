@@ -1,22 +1,5 @@
 import { MdDeleteForever } from 'react-icons/md';
 
-// const Note = ({ id, text, date, handleDeleteNote }) => {
-// 	return (
-// 		<div className='note'>
-// 			<span>{text}</span>
-// 			<div className='note-footer'>
-// 				<small>{date}</small>
-// 				<MdDeleteForever
-// 					onClick={() => handleDeleteNote(id)}
-// 					className='delete-icon'
-// 					size='1.3em'
-// 				/>
-// 			</div>
-// 		</div>
-// 	);
-// };
-
-// export default Note;
 
 
 
@@ -69,45 +52,5 @@ const Note = ({ id, text, date, status, handleDeleteNote, handleUpdateNote, hand
 export default Note;
 
 
-
-
-
-
-// import { useState } from 'react';
-// import { MdDeleteForever } from 'react-icons/md';
-
-// const Note = ({ id, question, answer, status, date, handleDeleteNote, handleStatusChange }) => {
-//     const [isFlipped, setIsFlipped] = useState(false);
-
-//     const handleFlip = () => {
-//         setIsFlipped(!isFlipped);
-//     };
-
-//     return (
-//         <div className={`note ${isFlipped ? 'flipped' : ''}`} onClick={handleFlip}>
-//             <div className='note-front'>
-//                 <span>{question}</span>
-//             </div>
-//             <div className='note-back'>
-//                 <span>{answer}</span>
-//             </div>
-//             <div className='note-footer'>
-//                 <small>{date}</small>
-//                 <select value={status} onChange={(e) => handleStatusChange(id, e.target.value)}>
-//                     <option value='Noted'>Noted</option>
-//                     <option value='Want to Learn'>Want to Learn</option>
-//                     <option value='Learned'>Learned</option>
-//                 </select>
-//                 <MdDeleteForever
-//                     onClick={() => handleDeleteNote(id)}
-//                     className='delete-icon'
-//                     size='1.3em'
-//                 />
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default Note;
 
 

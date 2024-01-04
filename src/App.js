@@ -1,100 +1,3 @@
-// import { useState, useEffect } from 'react';
-// import { nanoid } from 'nanoid';
-// import NotesList from './components/NotesList';
-// import Search from './components/Search';
-// import Header from './components/Header';
-
-// const App = () => {
-// 	const [notes, setNotes] = useState([
-// 		{
-// 			id: nanoid(),
-// 			text: 'This is my first note!',
-// 			date: '15/04/2021',
-// 		},
-// 		{
-// 			id: nanoid(),
-// 			text: 'This is my second note!',
-// 			date: '21/04/2021',
-// 		},
-// 		{
-// 			id: nanoid(),
-// 			text: 'This is my third note!',
-// 			date: '28/04/2021',
-// 		},
-// 		{
-// 			id: nanoid(),
-// 			text: 'This is my new note!',
-// 			date: '30/04/2021',
-// 		},
-// 	]);
-
-// 	const [searchText, setSearchText] = useState('');
-
-// 	const [darkMode, setDarkMode] = useState(false);
-
-// 	useEffect(() => {
-// 		const savedNotes = JSON.parse(
-// 			localStorage.getItem('react-notes-app-data')
-// 		);
-
-// 		if (savedNotes) {
-// 			setNotes(savedNotes);
-// 		}
-// 	}, []);
-
-// 	useEffect(() => {
-// 		localStorage.setItem(
-// 			'react-notes-app-data',
-// 			JSON.stringify(notes)
-// 		);
-// 	}, [notes]);
-
-//   const handleUpdateNote = (id, newText) => {
-//     const updatedNotes = notes.map((note) =>
-//         note.id === id ? { ...note, text: newText } : note
-//     );
-//     setNotes(updatedNotes);
-//   };
-
-// 	const addNote = (text) => {
-// 		const date = new Date();
-// 		const newNote = {
-// 			id: nanoid(),
-// 			text: text,
-// 			date: date.toLocaleDateString(),
-// 		};
-// 		const newNotes = [...notes, newNote];
-// 		setNotes(newNotes);
-// 	};
-
-// 	const deleteNote = (id) => {
-// 		const newNotes = notes.filter((note) => note.id !== id);
-// 		setNotes(newNotes);
-// 	};
-
-// 	return (
-// 		<div className={`${darkMode && 'dark-mode'}`}>
-// 			<div className='container'>
-// 				<Header handleToggleDarkMode={setDarkMode} />
-// 				<Search handleSearchNote={setSearchText} />
-// 				<NotesList
-// 					notes={notes.filter((note) =>
-// 						note.text.toLowerCase().includes(searchText)
-// 					)}
-// 					handleAddNote={addNote}
-// 					handleDeleteNote={deleteNote}
-// 				/>
-// 			</div>
-// 		</div>
-// 	);
-
-
-// };
-
-// export default App;
-
-
-
 
 
 
@@ -108,6 +11,7 @@ import Header from './components/Header';
 import Filter from './components/Filter';
 import Sort from './components/Sort';
 import Contact from './components/Contact';
+import Introduction from './components/Introduction';
 
 const App = () => {
 
@@ -219,6 +123,7 @@ const App = () => {
          
     return (
         <div className={`${darkMode && 'dark-mode'}`}>
+          <Introduction/>
           <Contact/>
             <div className='container'>
                 <Header handleToggleDarkMode={setDarkMode} />
@@ -244,60 +149,3 @@ export default App;
 
 
 
-
-// import { useState, useEffect } from 'react';
-// import { nanoid } from 'nanoid';
-// import NotesList from './components/NotesList';
-// import AddNote from './components/AddNote';
-// import Header from './components/Header';
-
-// const App = () => {
-//     const [notes, setNotes] = useState([]);
-
-//     useEffect(() => {
-//         const savedNotes = JSON.parse(localStorage.getItem('react-notes-app-data'));
-//         if (savedNotes) {
-//             setNotes(savedNotes);
-//         }
-//     }, []);
-
-//     useEffect(() => {
-//         localStorage.setItem('react-notes-app-data', JSON.stringify(notes));
-//     }, [notes]);
-
-//     const addNote = (note) => {
-//         const newNote = {
-//             id: nanoid(),
-//             ...note,
-//             date: new Date().toLocaleDateString()
-//         };
-//         const newNotes = [...notes, newNote];
-//         setNotes(newNotes);
-//     };
-
-//     const deleteNote = (id) => {
-//         const newNotes = notes.filter((note) => note.id !== id);
-//         setNotes(newNotes);
-//     };
-
-//     const updateStatus = (id, newStatus) => {
-//         const updatedNotes = notes.map((note) =>
-//             note.id === id ? { ...note, status: newStatus } : note
-//         );
-//         setNotes(updatedNotes);
-//     };
-
-//     return (
-//         <div className='container'>
-//             <Header />
-//             <AddNote handleAddNote={addNote} />
-//             <NotesList
-//                 notes={notes}
-//                 handleDeleteNote={deleteNote}
-//                 handleStatusChange={updateStatus}
-//             />
-//         </div>
-//     );
-// };
-
-// export default App;
