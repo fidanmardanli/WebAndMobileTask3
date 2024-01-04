@@ -101,13 +101,18 @@
 
 import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import NotesList from './components/NotesList';
 import Search from './components/Search';
 import Header from './components/Header';
 import Filter from './components/Filter';
+import Sort from './components/Sort';
+import Contact from './components/Contact';
 
 const App = () => {
+
   const [filter, setFilter] = useState('All');
+  const [sortMethod, setSortMethod] = useState('date');
    // State for the search text
     const [notes, setNotes] = useState([
         
@@ -195,19 +200,33 @@ const App = () => {
           setFilter(selectedFilter);
          };
   
-         const filteredAndSearchedNotes = notes
+         const processedNotes = notes
          .filter(note => note.text.toLowerCase().includes(searchText.toLowerCase()))
-         .filter(note => filter === 'All' || note.status === filter);
+         .filter(note => filter === 'All' || note.status === filter)
+         .sort((a, b) => {
+             if (sortMethod === 'date') {
+                 return new Date(b.date) - new Date(a.date);
+             } else if (sortMethod === 'status') {
+                 return a.status.localeCompare(b.status);
+             } else if (sortMethod === 'text') {
+                 return a.text.localeCompare(b.text);
+             }
+         });
+
+         const handleSortChange = (method) => {
+          setSortMethod(method);
+        };
          
     return (
         <div className={`${darkMode && 'dark-mode'}`}>
+          <Contact/>
             <div className='container'>
                 <Header handleToggleDarkMode={setDarkMode} />
                 <Search handleSearchNote={setSearchText} />
                 <Filter handleFilterChange={handleFilterChange} />
+                <Sort handleSortChange={handleSortChange} />
                 <NotesList
-                     notes={filteredAndSearchedNotes}
-                   
+                     notes={processedNotes}
                     handleAddNote={addNote}
                     handleDeleteNote={deleteNote}
                     handleUpdateNote={handleUpdateNote}  // Added this line
@@ -215,7 +234,9 @@ const App = () => {
                 />
             </div>
         </div>
+        
     );
+   
 };
 
 export default App;
