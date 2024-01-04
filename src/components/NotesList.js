@@ -23,6 +23,11 @@
 
 // export default NotesList;
 
+
+
+
+
+
 import Note from './Note';
 import AddNote from './AddNote';
 
@@ -31,6 +36,7 @@ const NotesList = ({
     handleAddNote,
     handleDeleteNote,
     handleUpdateNote,
+    handleStatusChange
 }) => {
     return (
         <div className='notes-list'>
@@ -42,6 +48,7 @@ const NotesList = ({
                     date={note.date}
                     handleDeleteNote={() => handleDeleteNote(note.id)}
                     handleUpdateNote={handleUpdateNote}
+                    handleStatusChange={handleStatusChange}
                 />
             ))}
             <AddNote handleAddNote={handleAddNote} />
@@ -50,3 +57,6 @@ const NotesList = ({
 };
 
 export default NotesList;
+
+
+

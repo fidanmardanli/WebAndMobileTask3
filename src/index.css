@@ -79,6 +79,27 @@ textarea:focus {
 	flex-direction: column;
 	justify-content: space-between;
 	white-space: pre-wrap;
+  
+  
+}
+.note-inner {
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.note-flipped .note-inner {
+  transform: rotateY(180deg);
+}
+
+.note-front, .note-back {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.note-back {
+  transform: rotateY(180deg);
 }
 
 .note-footer {

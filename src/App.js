@@ -92,6 +92,13 @@
 // };
 
 // export default App;
+
+
+
+
+
+
+
 import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import NotesList from './components/NotesList';
@@ -167,6 +174,19 @@ const App = () => {
         const newNotes = notes.filter((note) => note.id !== id);
         setNotes(newNotes);
     };
+    const updateStatus = (id, newStatus) => {
+              const updatedNotes = notes.map((note) =>
+                  note.id === id ? { ...note, status: newStatus } : note
+              );
+              setNotes(updatedNotes);
+          };
+
+         const handleStatusChange = (id, newStatus) => {
+            const updatedNotes = notes.map((note) =>
+                note.id === id ? { ...note, status: newStatus } : note
+            );
+            setNotes(updatedNotes);
+        };
 
     return (
         <div className={`${darkMode && 'dark-mode'}`}>
@@ -180,6 +200,7 @@ const App = () => {
                     handleAddNote={addNote}
                     handleDeleteNote={deleteNote}
                     handleUpdateNote={handleUpdateNote}  // Added this line
+                    handleStatusChange={updateStatus}
                 />
             </div>
         </div>
@@ -188,3 +209,63 @@ const App = () => {
 
 export default App;
 
+
+
+
+
+// import { useState, useEffect } from 'react';
+// import { nanoid } from 'nanoid';
+// import NotesList from './components/NotesList';
+// import AddNote from './components/AddNote';
+// import Header from './components/Header';
+
+// const App = () => {
+//     const [notes, setNotes] = useState([]);
+
+//     useEffect(() => {
+//         const savedNotes = JSON.parse(localStorage.getItem('react-notes-app-data'));
+//         if (savedNotes) {
+//             setNotes(savedNotes);
+//         }
+//     }, []);
+
+//     useEffect(() => {
+//         localStorage.setItem('react-notes-app-data', JSON.stringify(notes));
+//     }, [notes]);
+
+//     const addNote = (note) => {
+//         const newNote = {
+//             id: nanoid(),
+//             ...note,
+//             date: new Date().toLocaleDateString()
+//         };
+//         const newNotes = [...notes, newNote];
+//         setNotes(newNotes);
+//     };
+
+//     const deleteNote = (id) => {
+//         const newNotes = notes.filter((note) => note.id !== id);
+//         setNotes(newNotes);
+//     };
+
+//     const updateStatus = (id, newStatus) => {
+//         const updatedNotes = notes.map((note) =>
+//             note.id === id ? { ...note, status: newStatus } : note
+//         );
+//         setNotes(updatedNotes);
+//     };
+
+//     return (
+//         <div className='container'>
+//             <Header />
+//             <AddNote handleAddNote={addNote} />
+//             <NotesList
+//                 notes={notes}
+//                 handleDeleteNote={deleteNote}
+//                 handleStatusChange={updateStatus}
+//             />
+//         </div>
+//     );
+// };
+
+// export default App;
