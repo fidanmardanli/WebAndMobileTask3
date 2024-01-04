@@ -104,8 +104,11 @@ import { nanoid } from 'nanoid';
 import NotesList from './components/NotesList';
 import Search from './components/Search';
 import Header from './components/Header';
+import Filter from './components/Filter';
 
 const App = () => {
+  const [filter, setFilter] = useState('All');
+   // State for the search text
     const [notes, setNotes] = useState([
         
 {
@@ -188,15 +191,23 @@ const App = () => {
             setNotes(updatedNotes);
         };
 
+        const handleFilterChange = (selectedFilter) => {
+          setFilter(selectedFilter);
+         };
+  
+         const filteredAndSearchedNotes = notes
+         .filter(note => note.text.toLowerCase().includes(searchText.toLowerCase()))
+         .filter(note => filter === 'All' || note.status === filter);
+         
     return (
         <div className={`${darkMode && 'dark-mode'}`}>
             <div className='container'>
                 <Header handleToggleDarkMode={setDarkMode} />
                 <Search handleSearchNote={setSearchText} />
+                <Filter handleFilterChange={handleFilterChange} />
                 <NotesList
-                    notes={notes.filter((note) =>
-                        note.text.toLowerCase().includes(searchText)
-                    )}
+                     notes={filteredAndSearchedNotes}
+                   
                     handleAddNote={addNote}
                     handleDeleteNote={deleteNote}
                     handleUpdateNote={handleUpdateNote}  // Added this line
